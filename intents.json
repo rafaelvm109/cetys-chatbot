@@ -1,18 +1,18 @@
 {"intents":  [
-    {"tag":  "greeting",
-     "patterns":  ["Hola", "Que tal?", "Buenos dias"],
-     "responses":  ["Hola", "Un placer", "Buenos dias"],
-     "context_set":  ""
-    },
-    {"tag":  "college.que_es",
-      "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
-      "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
-      "context_set":  ""
-    },
-    {"tag":  "college.numero_modulos",
-      "patterns":  ["Cuantos modulos tiene college?", "Cuál es la cantidad de modulos de college"],
-      "responses":  ["No se, pero son muchos", "Más de dos, creo...", "Siete, no estoy seguro, pero es mi numero de la suerte"],
-      "context_set":  ""
-    }
-  ]
+  {"tag":  "greeting",
+   "patterns":  ["Hola", "Que tal?", "Buenos dias"],
+   "responses":  ["Hola", "Un placer", "Buenos dias"],
+   "context_set":  ""
+  },
+  {"tag":  "college.que_es",
+    "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
+    "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
+    "context_set":  ""
+  },
+  {"tag":  "college.numero_modulos",
+    "patterns":  ["Cuantos modulos tiene college?", "Cuál es la cantidad de modulos de college"],
+    "responses":  ["No se, pero son muchos", "Más de dos, creo...", "Siete, no estoy seguro, pero es mi numero de la suerte"],
+    "context_set":  ""
+  }
+]
 }

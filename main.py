@@ -8,9 +8,11 @@ import random
 import json
 import pickle
 
+# loads json
 with open("intents.json") as file:
     data = json.load(file)
 
+# attempts to open a file with the processed data
 try:
     with open("data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
@@ -20,6 +22,7 @@ except:
     docs_x = []
     docs_y = []
 
+    # loops thorugh intents and tokenize 
     for intent in data['intents']:
         for pattern in intent['patterns']:
             wrds = nltk.word_tokenize(pattern)
@@ -30,6 +33,7 @@ except:
         if intent['tag'] not in labels:
             labels.append(intent['tag'])
 
+    # stem the patterns to the root of the word
     words = [stemmer.stem(w.lower()) for w in words if w != "?"]
     words = sorted(list(set(words)))
 
@@ -99,10 +103,11 @@ def bag_of_words(sentence, words):
 
     return np.array(bag)
 
+# main function para correr el chat
 def chat(): 
     print("Hola soy Cecilia, preguntame algo!")
     while True:
-        inp = input(">")
+        inp = input("> ")
         if inp.lower() == "quit":
             break
         
@@ -112,7 +117,8 @@ def chat():
         results_index = np.argmax(results)
         tag = labels[results_index]
         
-        if results[results_index] > 0.7:
+        # si el resultado es < 80% va a decir que no entendio
+        if results[results_index] > 0.8:
             for tg in data["intents"]:
                 if tg['tag'] == tag:
                     responses = tg['responses']
