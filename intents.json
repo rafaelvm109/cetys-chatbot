@@ -1,18 +1,48 @@
 {"intents":  [
-  {"tag":  "greeting",
-   "patterns":  ["Hola", "Que tal?", "Buenos dias"],
-   "responses":  ["Hola", "Un placer", "Buenos dias"],
-   "context_set":  ""
-  },
-  {"tag":  "college.que_es",
-    "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
-    "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
-    "context_set":  ""
-  },
-  {"tag":  "college.numero_modulos",
-    "patterns":  ["Cuantos modulos tiene college?", "Cuál es la cantidad de modulos de college"],
-    "responses":  ["No se, pero son muchos", "Más de dos, creo...", "Siete, no estoy seguro, pero es mi numero de la suerte"],
-    "context_set":  ""
-  }
-]
+    {"tag":  "greeting",
+     "patterns":  ["Hola", "Que tal?", "Buenos dias"],
+     "responses":  ["Hola", "Un placer", "Buenos dias"],
+     "context_set":  ""
+    },
+    {"tag":  "college.que_es",
+      "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
+      "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
+      "context_set":  ""
+    },
+    {"tag":  "college.numero_modulos",
+      "patterns":  ["Cuantos modulos tiene college?", "Cuál es la cantidad de modulos de college"],
+      "responses":  ["No se, pero son muchos", "Más de dos, creo...", "Siete, no estoy seguro, pero es mi numero de la suerte"],
+      "context_set":  ""
+    },
+    {"tag":  "college.mi_modulo",
+      "patterns":  ["En que modulo estoy?", "Cuál es mi modulo", "A que modulo pertenezco?"],
+      "responses":  ["Perteneces a algun modulo", "Estas en el de ingeneria", "Preguntale a alguien que sepa"],
+      "context_set":  ""
+    },
+    {"tag":  "college.tiempo_entrevista",
+      "patterns":  ["Cuando puedo hacer mi entrevista?", "Que dia son las entrevistas?", "Ya pasaron las entrevistas?", "Hoy es la entrevista"],
+      "responses":  ["La entrevista es el lunes", "Va a ser el 31 de febrero", "Por que no lo apuntaste en tu calendario?"],
+      "context_set":  ""
+    },
+    {"tag":  "college.fecha_inicio_clases",
+      "patterns":  ["Cuando inician las clases?", "Ya empezaron las clases?", "Que dia es el regreso a clase?", "Cuando entramos a la escuela?"],
+      "responses":  ["No se, yo ya no quiero clases", "Ya empezaron las clases hace un mes", "Las clases inician mañana"],
+      "context_set":  ""
+    },
+    {"tag":  "college.fecha_final_clases",
+      "patterns":  ["Cuando terminan las clases?", "Ya acabaron las clases?", "Ya quiero que acaben las clases", "Que dia es el ultimo de clase?"],
+      "responses":  ["Ojala y se acaben mañana", "Apenas va iniciando el semestre", "Todavia falta hasta diciembre"],
+      "context_set":  ""
+    },
+    {"tag":  "college.repeticion_examen_diagnostico",
+      "patterns":  ["Puedo hacer de nuevo mi examen diagnostico?", "No pase mi examen diagnostico", "Es posible repetir mi examen diagnostico?"],
+      "responses":  ["No, el examen no se repite", "Si lo fallaste ya ni modo", "Algo me dice que reprobaste ese examen"],
+      "context_set":  ""
+    },
+    {"tag":  "college.dar_baja",
+      "patterns":  ["Me quiero dar de baja", "Que puedo hacer para darme de baja?", "No me esta gustando mi carrera"],
+      "responses":  ["Habla con los de Administracion", "Si no te gusto la carrera solo cambiate", "Ya casi terminas la escuela, mejor terminala primero"],
+      "context_set":  ""
+    }
+  ]
 }
