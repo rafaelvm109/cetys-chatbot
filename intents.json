@@ -6,42 +6,77 @@
     },
     {"tag":  "college.que_es",
       "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
-      "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
+      "responses":  ["Son módulos de clases en inglés que son impartidas a los alumnos de profesional inscritos en alguna carrera universitaria que ofrece Cetys Universidad.\nPara determinar en qué módulo College les corresponde los alumnos presentan un examen de ubicación.\nEs importante mencionar que todos los alumnos cuentan con 100% de beca para cursar sus módulos College, sin embargo esta beca puede perderse en dado caso que los alumnos reprueben, si esto sucede se debe hacer el pago correspondiente de $12,595 m.n. Los alumnos deben recursar, aprobar y es entonces cuando la beca 100% vuelve a recuperarse."],
       "context_set":  ""
     },
     {"tag":  "college.numero_modulos",
       "patterns":  ["Cuantos modulos tiene college?", "Cuál es la cantidad de modulos de college"],
-      "responses":  ["No se, pero son muchos", "Más de dos, creo...", "Siete, no estoy seguro, pero es mi numero de la suerte"],
+      "responses":  ["El programa de College English consiste en cinco módulos, del módulo #1 al #5.\nCada módulo consta de 3 materias: conversación, estructura, redacción académica.\nSe cursa un módulo por semestre.\nLas clases son de lunes a jueves en horario de 2pm a 4pm."],
+      "context_set":  ""
+    },
+    {"tag":  "college.porque_cursar",
+      "patterns":  ["Por qué debo cursar modulos college?", "Es necesario que curse college?", "Para que me sirve cursar el college?"],
+      "responses":  ["Es muy importante debido a que en el 5to semestre de las carreras universitarias que se ofrecen en Cetys Universidad se encuentra la materia: Comunicación oral y escrita en inglés.\nDicha materia para poder cursarse tiene como requisito obligatorio e indispensable: Ser egresado del programa College."],
+      "context_set":  ""
+    },
+    {"tag":  "college.acreditar_sin_asistir",
+      "patterns":  ["¿Cómo puedo acreditar y no asistir a los módulos de  College?", "Hay alguna manera para no cursar college?", "Que puedo hacer para no ir a college?"],
+      "responses":  ["Puedes hacerlo de 3 formas:\nPor resultado automático:  Acreditado  en el examen de ubicación a los módulos de College, si por sistema el resultado arrojado es AC (acreditado) estarás libre de cursar módulos College.\nPor proceso de ubicación: Si después de la revisión de escrito y la aplicación de entrevista se determinar que estas acreditado, estarás libre de cursar módulos College.\nSi eres egresado de BI: Si eres egresado del Bachillerato Internacional, se te acreditarán los módulos College y no tendrás que cursarlos."],
       "context_set":  ""
     },
     {"tag":  "college.mi_modulo",
       "patterns":  ["En que modulo estoy?", "Cuál es mi modulo", "A que modulo pertenezco?"],
-      "responses":  ["Perteneces a algun modulo", "Estas en el de ingeneria", "Preguntale a alguien que sepa"],
+      "responses":  ["Una vez que presentas tu examen de ubicación a los módulos de College, ese mismo día por la tarde, el resultado del módulo ubicado te será enviado a tu correo Cetys.\nEn dado caso de haber realizado redacción de escrito y entrevista tendrás que esperar aproximadamente 2 días para que el resultado del módulo ubicado te sea enviado a tu correo Cetys."],
       "context_set":  ""
     },
-    {"tag":  "college.tiempo_entrevista",
-      "patterns":  ["Cuando puedo hacer mi entrevista?", "Que dia son las entrevistas?", "Ya pasaron las entrevistas?", "Hoy es la entrevista"],
-      "responses":  ["La entrevista es el lunes", "Va a ser el 31 de febrero", "Por que no lo apuntaste en tu calendario?"],
+    {"tag":  "college.modo_de_ubicacion",
+      "patterns":  ["Como me ubican en mi módulo College?", "Cómo le hacen para saber en qué modulo quede?"],
+      "responses":  ["Los alumnos de nuevo ingreso, durante la semana del curso de inducción, presentarán su examen de ubicación a los módulos de College. Ese mismo día por la tarde se te enviará un correo para informarte en qué nivel de inglés se te ubico.\nEn dado caso que se requiera aplicarte entrevista y revisarse tu escrito, se te enviará un correo para hacerte saber el día, la hora y el lugar/modalidad en la que se te aplicará tu entrevista.\nUna vez que se tenga la calificación de tu escrito y de la entrevista se te enviará a tu correo Cetys el  módulo College que debes cursar durante el semestre.\nAdemás de lo anterior, se te hará saber el nombre de tu maestro, el salón donde se impartirán las clases e información sobre el inicio y término y el horario/días de clases."],
+      "context_set":  ""
+    },
+    {"tag":  "college.fecha_entrevista",
+      "patterns":  ["Cuando puedo hacer mi entrevista?", "Que dia sera mi entrevista?", "Tengo que hacer entrevista?"],
+      "responses":  ["En dado caso que los resultados de tu examen soliciten aplicación de entrevista y revisión de escrito, serás contactado por medio de tu correo Cetys para infórmate el día-hora en el que tendrás tu entrevista. Misma que es maestro-alumno ya sea de forma presencial en el campus o bien por medio de Zoom, la entrevista tiene una duración de entre 8 a 10 min."],
       "context_set":  ""
     },
     {"tag":  "college.fecha_inicio_clases",
-      "patterns":  ["Cuando inician las clases?", "Ya empezaron las clases?", "Que dia es el regreso a clase?", "Cuando entramos a la escuela?"],
-      "responses":  ["No se, yo ya no quiero clases", "Ya empezaron las clases hace un mes", "Las clases inician mañana"],
+      "patterns":  ["Cuando inician las clases?", "Ya empezaron las clases?", "Cuando iniciamos con el college?"],
+      "responses":  ["Las clases de College comienzan una semana después de haber iniciado tu semestre"],
+      "context_set":  ""
+    },
+    {"tag":  "college.profe_y_salon",
+      "patterns":  ["¿Cómo se quién es mi maestro y en que salón serán las clases de mi módulo College?"],
+      "responses":  ["Previo al inicio de tu primer día de clases al módulo de College se te enviará  a tu correo Cetys la información sobre tus clases, tal como:\nFecha de inicio\nFecha de termino\nHorario/Días de clase\nMaestro que imparte el módulo\nLa información sobre el libro que se utilizará y material de clase les será solicitado por su maestro."],
       "context_set":  ""
     },
     {"tag":  "college.fecha_final_clases",
       "patterns":  ["Cuando terminan las clases?", "Ya acabaron las clases?", "Ya quiero que acaben las clases", "Que dia es el ultimo de clase?"],
-      "responses":  ["Ojala y se acaben mañana", "Apenas va iniciando el semestre", "Todavia falta hasta diciembre"],
+      "responses":  ["Las clases de College terminan una semana antes de que finalice tu semestre"],
       "context_set":  ""
     },
     {"tag":  "college.repeticion_examen_diagnostico",
-      "patterns":  ["Puedo hacer de nuevo mi examen diagnostico?", "No pase mi examen diagnostico", "Es posible repetir mi examen diagnostico?"],
-      "responses":  ["No, el examen no se repite", "Si lo fallaste ya ni modo", "Algo me dice que reprobaste ese examen"],
+      "patterns":  ["Puedo hacer de nuevo mi examen diagnostico?", "Es posible repetir mi examen diagnostico?"],
+      "responses":  ["Se debe hacer una solicitud, explicando los motivos por los cuales solicitas presentar tu 2da oportunidad del examen de ubicación a los módulos de College. Será  la coordinación de College quien te lo autorice previo a la revisión de tu petición.\nEl costo del examen es de $350 pesos, debe pagarse en caja y al presentar en la coordinación de College tu comprobante se te proporcionará la fecha y hora para que lo puedas presentar."],
+      "context_set":  ""
+    },
+    {"tag":  "college.inconformidad_modulo",
+      "patterns":  ["No estoy conforme con el módulo College que me fue asignado", "Siento que estoy en el modulo equivocado", "Puedo cambiarme de modulo?"],
+      "responses":  ["Debes hacerle saber a tu maestro tu inquietud sobre el módulo en el que fuiste ubicado, este a su vez le hará saber a la coordinadora académica y serás contactado para revisar tus resultados, así mismo se te dará una retroalimentación.\nLos maestros durante 2 semanas observarán tu desempeño, actividades, tareas, participaciones y podrán determinar si te promueven de módulo College, o bien, si debes cursar un módulo menor al asignado para que tengas el mejor de los desempeños."],
       "context_set":  ""
     },
     {"tag":  "college.dar_baja",
-      "patterns":  ["Me quiero dar de baja", "Que puedo hacer para darme de baja?", "No me esta gustando mi carrera"],
-      "responses":  ["Habla con los de Administracion", "Si no te gusto la carrera solo cambiate", "Ya casi terminas la escuela, mejor terminala primero"],
+      "patterns":  ["Me quiero dar de baja", "Que puedo hacer para darme de baja?"],
+      "responses":  ["Acude a la Coordinación College para más información, cada situación es diferente pero si nos visitas podemos ayudarte con tus dudas, orientarte y hacer un plan para que curses tus módulos College en tiempo y forma.\nSe te solicitará que redactes un escrito en el que anotes lo siguiente:\nNombre\nMatricula\nCarrera\nSemestre\nMódulo College\nMotivo por el cual solicitas darte de baja\nTu plan para cursar, aprobar y terminar tus módulos College\nAgregas tu #cel para contactarte, tu correo Cetys y debe estar firmada\nTú solicitud será revisada por el Director de Operación Académica, será quien te autorice tu baja y para más información sobre el inicio de clases, de curso intersemestral, inscripción, beca College y  horarios será Nubia Velasquez quien te apoyará."],
+      "context_set":  ""
+    },
+    {"tag":  "college.entrenamiento_y_college",
+      "patterns":  ["Soy alumno deportista y mis entrenamientos son en el horario de las clases de College", "No puedo asistir a mis clases porque tengo entrenamiento"],
+      "responses":  ["Acude a la coordinación College para revisar tu estatus, darte orientación y apoyarte en las dudas que tengas."],
+      "context_set":  ""
+    },
+    {"tag":  "college.no_cursar",
+      "patterns":  ["¿Puedo no inscribirme a mis módulos, o darme de baja para cursar clases de inglés en otra escuela?"],
+      "responses":  ["Es requisito indispensable que todos los alumnos de nuevo ingreso a nivel profesional presenten su examen de ubicación a los módulos de College.\nAsí mismo todos los alumnos serán ubicados en el módulo College que les corresponda cursar. En dado caso de que por algún motivo no puedas cursar tu módulo o tengas dudas por favor acude a la coordinación de College para hablar sobre tu caso, darte orientación, y llegar a un acuerdo sobre tu estatus."],
       "context_set":  ""
     }
   ]
