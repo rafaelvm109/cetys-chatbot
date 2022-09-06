@@ -9,12 +9,13 @@ import json
 import pickle
 
 # loads json
-with open("intents.json") as file:
+with open("Solutions/college.json") as file:
     data = json.load(file)
+    print(data)
 
 # attempts to open a file with the processed data
 try:
-    with open("data.pickle", "rb") as f:
+    with open("Model/data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
 except:
     words = []
@@ -64,7 +65,7 @@ except:
     training = np.array(training)
     output = np.array(output)
 
-    with open("data.pickle", "wb") as f:
+    with open("Model/data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
 
 # M O D E L

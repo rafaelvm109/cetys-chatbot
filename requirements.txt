@@ -1,0 +1,6 @@
+loguru==0.6.0
+nltk==3.7
+numpy==1.23.2
+setuptools==65.0.2
+tensorflow==2.9.2
+tflearn==0.5.0

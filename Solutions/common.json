@@ -1,0 +1,7 @@
+{"intents":  [
+  {"tag":  "greeting",
+       "patterns":  ["Hola", "Que tal?", "Buenos dias"],
+       "responses":  ["Hola", "Un placer", "Buenos dias"],
+       "context_set":  ""
+      },
+  }

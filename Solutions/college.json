@@ -1,9 +1,4 @@
-{"intents":  [
-    {"tag":  "greeting",
-     "patterns":  ["Hola", "Que tal?", "Buenos dias"],
-     "responses":  ["Hola", "Un placer", "Buenos dias"],
-     "context_set":  ""
-    },
+{"college":  [
     {"tag":  "college.que_es",
       "patterns":  ["¿Qué es college?", "No se que es college", "Me puede explicar qué es college?"],
       "responses":  ["www.queescollege.com", "Pregunta en recepción", "College es un departamento"],
