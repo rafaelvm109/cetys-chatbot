@@ -1,5 +1,6 @@
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
+
 stemmer = LancasterStemmer()
 import numpy as np
 import tflearn
@@ -104,20 +105,21 @@ def bag_of_words(sentence, words):
 
     return np.array(bag)
 
+
 # main function para correr el chat
-def chat(): 
+def chat():
     print("Hola soy Cecilia, preguntame algo!")
     while True:
         inp = input("> ")
         if inp.lower() == "quit":
             break
-        
+
         # probabilities
         results = model.predict([bag_of_words(inp, words)])[0]
         # index of greatest value
         results_index = np.argmax(results)
         tag = labels[results_index]
-        
+
         # si el resultado es < 80% va a decir que no entendio
         if results[results_index] > 0.8:
             for tg in data["intents"]:
@@ -126,5 +128,6 @@ def chat():
             print(random.choice(responses))
         else:
             print("No te entendi, intenta otra pregunta")
+
 
 chat()
