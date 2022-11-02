@@ -1,6 +1,6 @@
 # Cecilia - Chat Bot
 
-`![Alt Text](https://www.insegment.com/blog/wp-content/uploads/2020/11/chatbot-marketing.gif)`
+![](https://www.insegment.com/blog/wp-content/uploads/2020/11/chatbot-marketing.gif)`
 
 ### Setup:
 
