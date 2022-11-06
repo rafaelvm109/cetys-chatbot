@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<link rel="stylesheet" href="ChatView/templates/style.css">
+<link rel="stylesheet" href="{% static '/style.css' %}">
 
 <head>
     <meta charset="UTF-8">
@@ -28,12 +28,12 @@
             </div>
         </div>
         <div class="chatbox__button">
-            <button><img src="./images/chatbox-icon.svg" /></button>
+            <button><img src="https://raw.githubusercontent.com/rafaelvm109/cetys-chatbot/main/chatbot_and_ui/static/images/chatbox-icon.svg" /></button>
         </div>
     </div>
 </div>
 
-    <script src="./app.js"></script>
+<script src="{% static '/app.js' %}"></script>
 
 </body>
 </html>

@@ -17,6 +17,18 @@ body {
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
     --primary: #581B98;
+
+    --background: #3c3b3b;
+    --background-accent: #2B2B2B;
+    --title-text: #FFF;
+    --accent-text: #868686;
+    --online: #6EDB18;
+    --chatbot-message-fg: #000;
+    --chatbot-message-bg: #B6B6B5;
+    --user-message-fg: #000;
+    --user-message-bg: #FBD404;
+    --send-button-color: #868686;
+
 }
 
 /* CHATBOX
@@ -31,7 +43,7 @@ body {
 .chatbox__support {
     display: flex;
     flex-direction: column;
-    background: #eee;
+    background: var(--background);
     width: 300px;
     height: 350px;
     z-index: -123456;
@@ -97,19 +109,20 @@ body {
 }
 
 .chatbox__support {
-    background: #f9f9f9;
+    background: var(--background);
     height: 450px;
     width: 350px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 /* HEADER */
 .chatbox__header {
-    background: var(--primaryGradient);
+    background: var(--background-accent);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px 20px;
@@ -120,6 +133,14 @@ body {
 
 .chatbox__image--header {
     margin-right: 10px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.chatbox__content--header {
+    position: relative;
 }
 
 .chatbox__heading--header {
@@ -155,8 +176,8 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: var(--primary);
-    color: white;
+    background: var(--user-message-bg);
+    color: black;
 }
 
 /* FOOTER */
@@ -166,10 +187,9 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px 20px;
-    background: var(--secondaryGradient);
+    background: var(--background-accent);
     box-shadow: var(--secondaryBoxShadow);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 20px;
     margin-top: 20px;
 }
 
@@ -189,7 +209,7 @@ body {
 .chatbox__button button:focus,
 .chatbox__button button:visited {
     padding: 10px;
-    background: white;
+    background: #FBD404;
     border: none;
     outline: none;
     border-top-left-radius: 50px;
@@ -198,3 +218,10 @@ body {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
+
+.chatbox__button img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
