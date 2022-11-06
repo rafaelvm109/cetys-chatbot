@@ -29,14 +29,10 @@
 
                     
                     <div class="d-flex gap-4 flex-sm-column flex-row min-vh-100">
-                        
-                        <!-- ESTO DEBE SER DINAMICO (UN BOTON POR CATEGORIA) -->
-                        <button type="button" class="btn btn-outline-warning">Estudiantil</button>
-                        <button type="button" class="btn btn-outline-warning">Saludos</button>
-                        <button type="button" class="btn btn-outline-warning">Pagos</button>
-                        <button type="button" class="btn btn-outline-warning">Inscripciones</button>
-                        <button type="button" class="btn btn-outline-warning">Collage</button>
-                        <button type="button" class="btn btn-outline-warning">Alumni</button>
+
+                        {% for category in categories %}
+                            <button type="button" onclick="location.href='{% url 'category' category %}'" class="btn btn-outline-warning">{{category}}</button>
+                        {% endfor %}
 
                         <!-- ESTO ES PARA AGREGAR Y ELIMINAR CATEGORIAS-->
                         <div class="btn-group" role="group" aria-label="Basic example">
@@ -49,63 +45,38 @@
 
                 <!-- AQUI VA TODO EL CONTENIDO DE LA DERECHA -->
                 <div class="col bg-secondary">
-                    <ul class="list-group list-group-numbered">
+                    <ul class="list-group">
 
                         <!-- ESTOS SE DEBEN DE GENERAR DINAMICOS (UNO POR PREGUNTA) -->
-                        <li class="list-group-item">
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Pregunta</span>
-                                <input type="text" class="form-control" placeholder="Pregunta" aria-label="Pregunta" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Respuestas</span>
-                                <input type="text" class="form-control" placeholder="Respuestas" aria-label="Respuesta" aria-describedby="basic-addon1">
-                            </div>
-                            <!-- ESTO ES PARA AGREGAR Preguntas-->
-                            <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-danger">Remove</button>
-                            </div>
-                        </li>
+                        {% for item in category_data %}
+                            <li class="list-group-item">
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon1">Tag</span>
+                                    <input class="form-control" value={{item.tag}} aria-label="Pregunta" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon1">Pregunta</span>
+                                    <textarea class="form-control" aria-label="Pregunta" aria-describedby="basic-addon1"> {{item.patterns}} </textarea>
+                                </div>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text" id="basic-addon1">Respuestas</span>
+                                    <textarea class="form-control" aria-label="Pregunta" aria-describedby="basic-addon1"> {{item.responses}} </textarea>
+                                </div>
+                                <!-- ESTO ES PARA AGREGAR Preguntas-->
+                                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-danger">Remove</button>
+                                </div>
+                            </li>
+                        {% endfor %}
 
-                        <!-- ESTOS SE DEBEN DE GENERAR DINAMICOS (UNO POR PREGUNTA) -->
-                        <li class="list-group-item">
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Pregunta</span>
-                                <input type="text" class="form-control" placeholder="Pregunta" aria-label="Pregunta" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Respuestas</span>
-                                <input type="text" class="form-control" placeholder="Respuestas" aria-label="Respuesta" aria-describedby="basic-addon1">
-                            </div>
-                            <!-- ESTO ES PARA AGREGAR Preguntas-->
-                            <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-danger">Remove</button>
-                            </div>
-                        </li>
-
-                        <!-- ESTOS SE DEBEN DE GENERAR DINAMICOS (UNO POR PREGUNTA) -->
-                        <li class="list-group-item">
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Pregunta</span>
-                                <input type="text" class="form-control" placeholder="Pregunta" aria-label="Pregunta" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-1">
-                                <span class="input-group-text" id="basic-addon1">Respuestas</span>
-                                <input type="text" class="form-control" placeholder="Respuestas" aria-label="Respuesta" aria-describedby="basic-addon1">
-                            </div>
-                            <!-- ESTO ES PARA AGREGAR Preguntas-->
-                            <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-danger">Remove</button>
-                            </div>
-                        </li>
-
-                        <!-- ESTOS SE DEBEN DE GENERAR DINAMICOS (UNO POR PREGUNTA) -->
+                        {% if category_data %}
                         <li class="list-group-item">
                             <!-- ESTO ES PARA AGREGAR Preguntas-->
                             <div class="btn-group mb-3" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-success">Add</button>
                             </div>
                         </li>
+                        {% endif %}
 
                     </ul>
                 </div>
