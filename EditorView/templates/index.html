@@ -28,6 +28,9 @@
                 <div class="col-auto col-xl-2 bg-dark">
                     <div class="d-grid gap-2">
 
+                        <button type="button" class="btn btn-outline-success btn-sm">Add Category</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm">Remove Category</button>
+
                         <h4 class="text-white"> Categorias </h4>
                         {% for category in categories %}
                             <button onclick="location.href='{% url 'get_category' category.category %}'" class="btn btn-warning" type="button">{{category.category}}</button>
@@ -61,7 +64,9 @@
                                 </div>
                             </li>
                         {% endfor %}
-                        <button  type="button" class="btn btn-success btn-sm">Add</button>
+                        {% if category %}
+                            <button  onclick="location.href='{% url 'add_pattern' category %}'" type="button" class="btn btn-success btn-sm">Add</button>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

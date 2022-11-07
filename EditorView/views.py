@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, PatternResponse
+import time
+
 
 # Inicio del programa
 def index(request):
     all_categories = Category.objects.all()
     return render(request, 'index.html', {"categories": all_categories})
+
 
 # Se muestra cuando le dan click a una categoria
 def get_category(request, category_id):
@@ -14,7 +17,8 @@ def get_category(request, category_id):
     for item in all_patterns:
         if category_id.lower() in item.tag:
             data.append(item)
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data})
+    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+
 
 # Se muestra cuando le dan editar a un patron
 def edit_pattern(request, tag_id):
@@ -22,8 +26,28 @@ def edit_pattern(request, tag_id):
     data = []
     for item in pattern:
         data.append(item)
-    return render(request, 'add.html', {"pattern":data[0]})
-    
+    return render(request, 'add.html', {"pattern": data[0]})
+
+
+def add_pattern(request, category_id):
+    cat = Category.objects.get(category=category_id)
+
+    new = PatternResponse()
+    new.category = cat
+    new.tag = category_id.lower() + "." + str(time.time())
+    new.pattern = ""
+    new.response = ""
+    new.save()
+
+    all_categories = Category.objects.all()
+    all_patterns = PatternResponse.objects.all()
+    data = []
+    for item in all_patterns:
+        if category_id.lower() in item.tag:
+            data.append(item)
+    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+
+
 # Se muestra cuando le dan guardar a un patron
 def push_edit(request, tag_id):
     pattern = PatternResponse.objects.get(tag=tag_id)
@@ -31,12 +55,12 @@ def push_edit(request, tag_id):
     pattern.pattern = request.POST['pattern']
     pattern.response = request.POST['response']
     pattern.save()
-    
+
     all_categories = Category.objects.all()
     all_patterns = PatternResponse.objects.all()
     data = []
     for item in all_patterns:
         if pattern.category.category.lower() in item.tag:
             data.append(item)
-    
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data})
+
+    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": pattern.category.category})
