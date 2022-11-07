@@ -3,10 +3,11 @@ import json
 import torch
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
+import time
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r') as json_data:
+with open('intents.json', 'r', encoding="utf-8") as json_data:
     intents = json.load(json_data)
 
 FILE = "data.pth"
@@ -23,7 +24,7 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Sam"
+bot_name = "Cecilia"
 
 def get_response(msg):
     sentence = tokenize(msg)
@@ -47,9 +48,8 @@ def get_response(msg):
 
 
 if __name__ == "__main__":
-    print("Let's chat! (type 'quit' to exit)")
+    print("Mensaje inicial")
     while True:
-        # sentence = "do you use credit cards?"
         sentence = input("You: ")
         if sentence == "quit":
             break
