@@ -63,4 +63,39 @@ def push_edit(request, tag_id):
         if pattern.category.category.lower() in item.tag:
             data.append(item)
 
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": pattern.category.category})
+    return render(request, 'index.html',
+                  {"categories": all_categories, "patterns": data, "category": pattern.category.category})
+
+
+def add_category(request):
+    return render(request, 'category.html')
+
+
+def go_home(request):
+    all_categories = Category.objects.all()
+    return render(request, 'index.html', {"categories": all_categories})
+
+
+def commit_category(request):
+    new_cat = Category()
+    new_cat.category = request.POST["NewCategory"]
+    new_cat.save()
+
+    all_categories = Category.objects.all()
+
+    return render(request, 'index.html', {"categories": all_categories})
+
+
+def remove_category(request):
+    all_categories = Category.objects.all()
+
+    return render(request, 'remove.html', {"categories": all_categories})
+
+
+def commit_remove_category(request):
+    cat = Category.objects.get(category=request.POST["remove"])
+    cat.delete()
+
+    all_categories = Category.objects.all()
+
+    return render(request, 'index.html', {"categories": all_categories})
