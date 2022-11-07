@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
+from django.core import serializers
 from .models import Category, PatternResponse
 import time
+import json
 
 
 # Inicio del programa
@@ -11,6 +13,7 @@ def index(request):
 
 # Se muestra cuando le dan click a una categoria
 def get_category(request, category_id):
+    export2json()
     all_categories = Category.objects.all()
     all_patterns = PatternResponse.objects.all()
     data = []
@@ -88,3 +91,10 @@ def commit_remove_category(request):
     cat.delete()
 
     return redirect('go_home')
+
+
+def export2json():
+    all_patterns = PatternResponse.objects.all()
+    with open(r'intents.json', "w") as out:
+        mast_point = serializers.serialize("json", all_patterns)
+        out.write(mast_point)
