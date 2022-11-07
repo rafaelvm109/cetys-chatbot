@@ -26,5 +26,5 @@ Open a browser and go to: http://127.0.0.1:8000/
 > http://127.0.0.1:8000/ChatView
 > 
 > DBVIew
-> http://127.0.0.1:8000/DBView
+> http://127.0.0.1:8000/EditorView
 
