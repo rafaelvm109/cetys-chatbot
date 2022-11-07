@@ -13,4 +13,5 @@ urlpatterns = [
     path('remove_category/', views.remove_category, name='remove_category'),
     path('commit_remove_category/', views.commit_remove_category, name='commit_remove_category'),
     path('go_home/', views.go_home, name='go_home'),
+    path('remove_pattern/<category_id>/<tag_id>', views.remove_pattern, name='remove_pattern'),
 ]

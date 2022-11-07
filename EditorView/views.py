@@ -20,6 +20,19 @@ def get_category(request, category_id):
     return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
 
 
+def remove_pattern(request, category_id, tag_id):
+    pattern = PatternResponse.objects.filter(tag=tag_id)
+    pattern.delete()
+
+    all_categories = Category.objects.all()
+    all_patterns = PatternResponse.objects.all()
+    data = []
+    for item in all_patterns:
+        if category_id.lower() in item.tag:
+            data.append(item)
+    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+
+
 # Se muestra cuando le dan editar a un patron
 def edit_pattern(request, tag_id):
     pattern = PatternResponse.objects.filter(tag=tag_id)
@@ -35,8 +48,6 @@ def add_pattern(request, category_id):
     new = PatternResponse()
     new.category = cat
     new.tag = category_id.lower() + "." + str(time.time())
-    new.pattern = ""
-    new.response = ""
     new.save()
 
     all_categories = Category.objects.all()

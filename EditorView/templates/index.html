@@ -60,7 +60,7 @@
                                 <!-- ESTO ES PARA AGREGAR Preguntas-->
                                 <div class="btn-group mb-3" role="group" aria-label="Basic example">
                                     <button onclick="location.href='{% url 'edit_pattern' item.tag%}'" type="button" class="btn btn-secondary btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Remove</button>
+                                    <button onclick="location.href='{% url 'remove_pattern' category item.tag %}'" type="button" class="btn btn-danger btn-sm">Remove</button>
                                 </div>
                             </li>
                         {% endfor %}

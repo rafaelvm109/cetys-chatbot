@@ -28,17 +28,18 @@
                 {% csrf_token %}
                 <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon1">Tag</span>
-                    <input class="form-control" name="tag" value={{pattern.tag}} aria-label="Pregunta" aria-describedby="basic-addon1">
+                    <input required class="form-control" name="tag" value={{pattern.tag}} aria-label="Pregunta" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon1">Pregunta</span>
-                    <textarea class="form-control" name="pattern" aria-label="Pregunta" aria-describedby="basic-addon1"> {{pattern.pattern}} </textarea>
+                    <textarea required class="form-control" name="pattern" aria-label="Pregunta" aria-describedby="basic-addon1">{{pattern.pattern}}</textarea>
                 </div>
                 <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon1">Respuestas</span>
-                    <textarea class="form-control" name="response" aria-label="Pregunta" aria-describedby="basic-addon1"> {{pattern.response}} </textarea>
+                    <textarea required class="form-control" name="response" aria-label="Pregunta" aria-describedby="basic-addon1">{{pattern.response}}</textarea>
                 </div>
-                <input type="submit" value="Guardar" />
+                <input class="btn btn-success btn-sm" type="submit" value="Guardar" />
+                <button onclick="location.href='{% url 'go_home' %}'" type="button" class="btn btn-outline-secondary btn-sm">Cancelar</button>
             </form>
         </div>
 
