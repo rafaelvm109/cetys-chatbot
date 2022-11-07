@@ -3,6 +3,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap demo</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
         <!-- NAV BAR DE ARRIBA -->
@@ -23,6 +24,7 @@
         <!-- DIVISOR DE COLUMNAS -->
         <div class="container-fluid">
             <h3>Editar Patron: {{ pattern.tag}}</h3>
+            <hr>
 
             <form action="{% url 'push_edit' pattern.tag %}" method="post">
                 {% csrf_token %}
@@ -39,7 +41,7 @@
                     <textarea required class="form-control" name="response" aria-label="Pregunta" aria-describedby="basic-addon1">{{pattern.response}}</textarea>
                 </div>
                 <input class="btn btn-success btn-sm" type="submit" value="Guardar" />
-                <button onclick="location.href='{% url 'go_home' %}'" type="button" class="btn btn-outline-secondary btn-sm">Cancelar</button>
+                <button onclick="location.href='{% url 'get_category' pattern.category.category%}'" type="button" class="btn btn-outline-secondary btn-sm">Cancelar</button>
             </form>
         </div>
 

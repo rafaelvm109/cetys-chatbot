@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, PatternResponse
 import time
 
@@ -24,13 +24,7 @@ def remove_pattern(request, category_id, tag_id):
     pattern = PatternResponse.objects.filter(tag=tag_id)
     pattern.delete()
 
-    all_categories = Category.objects.all()
-    all_patterns = PatternResponse.objects.all()
-    data = []
-    for item in all_patterns:
-        if category_id.lower() in item.tag:
-            data.append(item)
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+    return redirect('get_category', category_id=category_id)
 
 
 # Se muestra cuando le dan editar a un patron
@@ -50,13 +44,7 @@ def add_pattern(request, category_id):
     new.tag = category_id.lower() + "." + str(time.time())
     new.save()
 
-    all_categories = Category.objects.all()
-    all_patterns = PatternResponse.objects.all()
-    data = []
-    for item in all_patterns:
-        if category_id.lower() in item.tag:
-            data.append(item)
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+    return redirect('get_category', category_id=category_id)
 
 
 # Se muestra cuando le dan guardar a un patron
@@ -67,15 +55,7 @@ def push_edit(request, tag_id):
     pattern.response = request.POST['response']
     pattern.save()
 
-    all_categories = Category.objects.all()
-    all_patterns = PatternResponse.objects.all()
-    data = []
-    for item in all_patterns:
-        if pattern.category.category.lower() in item.tag:
-            data.append(item)
-
-    return render(request, 'index.html',
-                  {"categories": all_categories, "patterns": data, "category": pattern.category.category})
+    return redirect('get_category', category_id=pattern.category.category)
 
 
 def add_category(request):
@@ -94,7 +74,7 @@ def commit_category(request):
 
     all_categories = Category.objects.all()
 
-    return render(request, 'index.html', {"categories": all_categories})
+    return redirect('go_home')
 
 
 def remove_category(request):
@@ -107,6 +87,4 @@ def commit_remove_category(request):
     cat = Category.objects.get(category=request.POST["remove"])
     cat.delete()
 
-    all_categories = Category.objects.all()
-
-    return render(request, 'index.html', {"categories": all_categories})
+    return redirect('go_home')

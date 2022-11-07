@@ -3,12 +3,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap demo</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
         <!-- NAV BAR DE ARRIBA -->
         <nav class="navbar bg-warning">
             <div class="container-fluid">
-              <a class="navbar-brand"><h3>Cecilia Bot - Editor Preguntas / Respuestas </h3></a>
+              <a class="navbar-brand">
+
+                  <h3><i class="bi bi-person-circle"></i> Cecilia Bot - Dashboard </h3>
+              </a>
             </div>
         </nav>
     </head>
@@ -25,25 +29,29 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- ESTO ES LA BARRA DE LA IZQUIERDA -->
-                <div class="col-auto col-xl-2 bg-dark">
+                <div class="col-auto col-xl-2 d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
                     <div class="d-grid gap-2">
+                        <h3> Categorias </h3>
+                        <hr>
 
-                        <button onclick="location.href='{% url 'add_category' %}'" type="button" class="btn btn-outline-success btn-sm">Add Category</button>
-                        <button onclick="location.href='{% url 'remove_category' %}'" type="button" class="btn btn-outline-danger btn-sm">Remove Category</button>
-
-                        <h4 class="text-white"> Categorias </h4>
+                    </div>
+                    <div class="d-flex gap-2 flex-sm-column flex-row min-vh-100">
                         {% for category in categories %}
                             <button onclick="location.href='{% url 'get_category' category.category %}'" class="btn btn-warning" type="button">{{category.category}}</button>
                         {% endfor %}
+                        <button onclick="location.href='{% url 'add_category' %}'" type="button" class="btn btn-outline-success btn-sm">Add Category</button>
+                        <button onclick="location.href='{% url 'remove_category' %}'" type="button" class="btn btn-outline-danger btn-sm">Remove Category</button>
                     </div>
-                    <div class="d-flex gap-4 flex-sm-column flex-row min-vh-100"> </div> 
+
                 </div>
             
 
                 <div class="col bg-secondary">
                     <ul class="list-group">
                         <!-- ESTOS SE DEBEN DE GENERAR DINAMICOS (UNO POR PREGUNTA) -->
+
                         {% for item in patterns %}
+                            <hr>
                             <li class="list-group-item">
                                 <div class="input-group mb-1">
                                     <span class="input-group-text" id="basic-addon1">Tag</span>
