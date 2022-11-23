@@ -1,5 +1,0 @@
-Django==4.1.3
-nltk==3.7
-numpy==1.23.2
-tensorflow==2.9.2
-tflearn==0.5.0

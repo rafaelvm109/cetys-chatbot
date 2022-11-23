@@ -1,100 +1,93 @@
 from django.shortcuts import render, redirect
-from django.core import serializers
-from .models import Category, PatternResponse
-import time
-import json
+
+from EditorView.models import Category, PatternResponse
 
 
 # Inicio del programa
-def index(request):
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def categorias(request):
     all_categories = Category.objects.all()
-    return render(request, 'index.html', {"categories": all_categories})
+    if request.method == 'POST':
 
+        if request.POST.get("form_type") == 'searchForm':
+            select = request.POST['categorySelection']
+            data = PatternResponse.objects.filter(category__category__contains=select)
 
-# Se muestra cuando le dan click a una categoria
-def get_category(request, category_id):
-    export2json()
-    all_categories = Category.objects.all()
-    all_patterns = PatternResponse.objects.all()
-    data = []
-    for item in all_patterns:
-        if category_id.lower() in item.tag:
-            data.append(item)
-    return render(request, 'index.html', {"categories": all_categories, "patterns": data, "category": category_id})
+            if len(data) == 0:
+                print('empty')
+                return render(request, 'categorias.html', {"categorias": all_categories, "empty": {True}, "titulo": select})
 
+            for item in data:
+                item.notModifiedPattern = item.pattern
+                item.notModifiedResponse = item.response
+                item.pattern = item.pattern.split(',')
+                item.response = item.response.split(',')
+                
+            return render(request, 'categorias.html', {"categorias": all_categories, "patterns":data, "titulo": select})
+        
+        elif request.POST.get("form_type") == 'addForm':
+            name = request.POST['categoriaNueva']
+            categoria = Category(category=name)
+            categoria.save()
+            return redirect('categorias')
+        
+        elif request.POST.get("form_type") == 'eliminarForm':
+            select = request.POST.get("eliminar")
+            Category.objects.filter(category=select).delete()
+            return redirect('categorias')
+        
+        elif request.POST.get("form_type") == 'patronModal':
+            print(request.POST)
+            select = request.POST.get("categoriatitulo")
+            category = Category.objects.filter(category=select)[0]
 
-def remove_pattern(request, category_id, tag_id):
-    pattern = PatternResponse.objects.filter(tag=tag_id)
-    pattern.delete()
+            pregunta = request.POST['preguntaNueva']
+            patrones = request.POST['patronesNuevo']
+            respuesta = request.POST['respuestaNueva']
+            new = PatternResponse(category=category, tag=pregunta, pattern=patrones, response=respuesta)
+            new.save()
 
-    return redirect('get_category', category_id=category_id)
+            data = PatternResponse.objects.filter(category__category__contains=select)
 
+            for item in data:
+                item.notModifiedPattern = item.pattern
+                item.notModifiedResponse = item.response
+                item.pattern = item.pattern.split(',')
+                item.response = item.response.split(',')
 
-# Se muestra cuando le dan editar a un patron
-def edit_pattern(request, tag_id):
-    pattern = PatternResponse.objects.filter(tag=tag_id)
-    data = []
-    for item in pattern:
-        data.append(item)
-    return render(request, 'add.html', {"pattern": data[0]})
+            return render(request, 'categorias.html', {"categorias": all_categories, "patterns":data, "titulo": select})
 
+    else:
+        return render(request, 'categorias.html', {"categorias": all_categories})
+    
 
-def add_pattern(request, category_id):
-    cat = Category.objects.get(category=category_id)
+def editar_patron(request, patron):
+    if request.method == 'POST':
+        data = PatternResponse.objects.filter(tag=patron)[0]
 
-    new = PatternResponse()
-    new.category = cat
-    new.tag = category_id.lower() + "." + str(time.time())
-    new.save()
+        print(request.POST)
 
-    return redirect('get_category', category_id=category_id)
+        data.tag = request.POST["preguntaNueva"]
+        data.pattern = request.POST["patrones"]
+        data.response = request.POST["respuestaNueva"]
 
+        data.save()
+                
+        return redirect('categorias')
 
-# Se muestra cuando le dan guardar a un patron
-def push_edit(request, tag_id):
-    pattern = PatternResponse.objects.get(tag=tag_id)
-    pattern.tag = request.POST['tag']
-    pattern.pattern = request.POST['pattern']
-    pattern.response = request.POST['response']
-    pattern.save()
+    else:
+        data = PatternResponse.objects.filter(tag=patron)[0]
+        return render(request, 'editar.html', {"data": data})
+    
+def eliminar_patron(request, patron):
+    print(patron)
+    PatternResponse.objects.filter(tag=patron).delete()
+    return redirect('categorias')
 
-    return redirect('get_category', category_id=pattern.category.category)
-
-
-def add_category(request):
-    return render(request, 'category.html')
-
-
-def go_home(request):
-    all_categories = Category.objects.all()
-    return render(request, 'index.html', {"categories": all_categories})
-
-
-def commit_category(request):
-    new_cat = Category()
-    new_cat.category = request.POST["NewCategory"]
-    new_cat.save()
-
-    all_categories = Category.objects.all()
-
-    return redirect('go_home')
-
-
-def remove_category(request):
-    all_categories = Category.objects.all()
-
-    return render(request, 'remove.html', {"categories": all_categories})
-
-
-def commit_remove_category(request):
-    cat = Category.objects.get(category=request.POST["remove"])
-    cat.delete()
-
-    return redirect('go_home')
-
-
-def export2json():
-    all_patterns = PatternResponse.objects.all()
-    with open(r'intents.json', "w") as out:
-        mast_point = serializers.serialize("json", all_patterns)
-        out.write(mast_point)
+def reportes(request):
+    return render(request, 'reportes.html')
