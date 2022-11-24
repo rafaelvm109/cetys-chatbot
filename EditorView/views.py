@@ -2,27 +2,37 @@ from django.shortcuts import render, redirect
 from EditorView.models import Category, PatternResponse
 
 
-# Inicio del programa
+# ------------------
+# This function handles everything on the dashboard page
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-
+# ------------------
+# This function handles everything on the login page
 def login(request):
     return render(request, 'login.html')
 
 
+# ------------------
+# This function handles everything on the "Categorias" page
 def categorias(request):
+    # Get all the categories in the DB
     all_categories = Category.objects.all()
+
+    # This will check for a POST from a form and decide what to do depending on the data in POST
     if request.method == 'POST':
 
+        # Search for all patterns with the selected category
         if request.POST.get("form_type") == 'searchForm':
             select = request.POST['categorySelection']
             data = PatternResponse.objects.filter(
                 category__category__contains=select)
 
+            # Send an empty variable to the template if no data was found
             if len(data) == 0:
                 return render(request, 'categorias.html', {"categorias": all_categories, "empty": {True}, "titulo": select})
 
+            # Split the comma separated data to make it look better in the UI
             for item in data:
                 item.notModifiedPattern = item.pattern
                 item.notModifiedResponse = item.response
@@ -31,17 +41,20 @@ def categorias(request):
 
             return render(request, 'categorias.html', {"categorias": all_categories, "patterns": data, "titulo": select})
 
+        # Add a new category POST
         elif request.POST.get("form_type") == 'addForm':
             name = request.POST['categoriaNueva']
             categoria = Category(category=name)
             categoria.save()
             return redirect('categorias')
 
+        # Delete a new category MODAL
         elif request.POST.get("form_type") == 'eliminarForm':
             select = request.POST.get("eliminar")
             Category.objects.filter(category=select).delete()
             return redirect('categorias')
 
+        # Add a new Pattern Modal
         elif request.POST.get("form_type") == 'patronModal':
             print(request.POST)
             select = request.POST.get("categoriatitulo")
@@ -69,6 +82,8 @@ def categorias(request):
         return render(request, 'categorias.html', {"categorias": all_categories})
 
 
+# ------------------
+# This handles everything on the pattern edition page
 def editar_patron(request, patron):
     if request.method == 'POST':
         data = PatternResponse.objects.filter(tag=patron)[0]
@@ -86,10 +101,13 @@ def editar_patron(request, patron):
         return render(request, 'editar.html', {"data": data})
 
 
+# ------------------
+# This handles patten removal
 def eliminar_patron(request, patron):
     PatternResponse.objects.filter(tag=patron).delete()
     return redirect('categorias')
 
-
+# ------------------
+# Handles everything on the Reportes page
 def reportes(request):
     return render(request, 'reportes.html')
