@@ -38,18 +38,14 @@
     </div>
 
     <div class="container-fluid text-center">
-
       <h5> Editar Patron: {{data.tag}} </h5>
       <p></p>
-
-
 
       <form id="patronModal" method="POST">
         {% csrf_token %}
 
         <input type="hidden" name="form_type" value="patronModal">
         <input type="hidden" name="categoriatitulo" value={{titulo}}>
-
 
         <div class="row g-3">
           <div class="col">
