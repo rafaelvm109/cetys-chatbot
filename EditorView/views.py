@@ -1,5 +1,10 @@
-from django.shortcuts import render, redirect
+import ast
+from django.shortcuts import render, redirect, HttpResponse
 from EditorView.models import Category, PatternResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+
+import json
 
 
 # ------------------
@@ -20,6 +25,8 @@ def login(request):
 def categorias(request):
     # Get all the categories in the DB
     all_categories = Category.objects.all()
+
+    export2json()
 
     # This will check for a POST from a form and decide what to do depending on the data in POST
     if request.method == 'POST':
@@ -114,6 +121,28 @@ def eliminar_patron(request, patron):
 # This handles chatbot page
 def chatbot(request):
     return render(request, 'chatbot.html')
+
+
+@csrf_exempt
+def predict(request):
+    response = "Hi"
+    for element in request:
+        response = ast.literal_eval(element.decode('utf-8'))
+
+    chatbot_prediction(response["message"])
+
+    return HttpResponse(json.dumps({"answer": response}))
+
+
+def chatbot_prediction(message):
+    print(message)
+
+
+def export2json():
+    all_patterns = PatternResponse.objects.all()
+    with open(r'intents.json', "w") as out:
+        mast_point = serializers.serialize("json", all_patterns)
+        out.write(mast_point)
 
 
 # ------------------
