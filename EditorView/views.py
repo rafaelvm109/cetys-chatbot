@@ -9,6 +9,8 @@ def dashboard(request):
 
 # ------------------
 # This function handles everything on the login page
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -106,6 +108,13 @@ def editar_patron(request, patron):
 def eliminar_patron(request, patron):
     PatternResponse.objects.filter(tag=patron).delete()
     return redirect('categorias')
+
+
+# ------------------
+# This handles chatbot page
+def chatbot(request):
+    return render(request, 'chatbot.html')
+
 
 # ------------------
 # Handles everything on the Reportes page
