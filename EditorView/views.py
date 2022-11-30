@@ -131,7 +131,7 @@ def predict(request):
 
     chatbot_prediction(response["message"])
 
-    return HttpResponse(json.dumps({"answer": response}))
+    return HttpResponse(json.dumps({"answer": "Ya sirvo! (Mas o menos)"}))
 
 
 def chatbot_prediction(message):
