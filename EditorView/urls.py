@@ -11,4 +11,5 @@ urlpatterns = [
     path('eliminar_patron/<patron>', views.eliminar_patron, name='eliminar_patron'),
     path('chatbot', views.chatbot, name='chatbot'),
     path('predict', views.predict, name='predict'),
+    path('train_chat', views.train_chat, name='train_chat')
 ]

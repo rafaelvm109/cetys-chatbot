@@ -4,6 +4,7 @@ from EditorView.models import Category, PatternResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from Chat.chat import get_response
+from Chat.train import train
 
 import json
 
@@ -46,8 +47,8 @@ def categorias(request):
                 for item in data:
                     item.notModifiedPattern = item.pattern
                     item.notModifiedResponse = item.response
-                    item.pattern = item.pattern.split(',')
-                    item.response = item.response.split(',')
+                    item.pattern = item.pattern.split(';')
+                    item.response = item.response.split(';')
 
                 return render(request, 'categorias.html', {"categorias": all_categories, "patterns": data, "titulo": select})
 
@@ -83,8 +84,8 @@ def categorias(request):
                 for item in data:
                     item.notModifiedPattern = item.pattern
                     item.notModifiedResponse = item.response
-                    item.pattern = item.pattern.split(',')
-                    item.response = item.response.split(',')
+                    item.pattern = item.pattern.split(';')
+                    item.response = item.response.split(';')
 
                 return render(request, 'categorias.html', {"categorias": all_categories, "patterns": data, "titulo": select})
 
@@ -132,6 +133,11 @@ def chatbot(request):
     return render(request, 'chatbot.html')
 
 
+def train_chat(request):
+    trained = train()
+    return redirect('chatbot')
+
+
 @csrf_exempt
 def predict(request):
     for element in request:
@@ -155,8 +161,8 @@ def export2json():
         for pattern in all_patterns:
             data['intents'].append({
                 "tag": pattern.tag,
-                "patterns": pattern.pattern.split(','),
-                "responses": pattern.response.split(','),
+                "patterns": pattern.pattern.split(';'),
+                "responses": pattern.response.split(';'),
                 "context_set": ""
             })
 
