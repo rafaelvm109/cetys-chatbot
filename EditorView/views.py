@@ -135,7 +135,6 @@ def chatbot(request):
 @csrf_exempt
 def predict(request):
     for element in request:
-        print(element)
         response = ast.literal_eval(element.decode('utf-8'))
 
     prediction = chatbot_prediction(response["message"])
@@ -156,8 +155,8 @@ def export2json():
         for pattern in all_patterns:
             data['intents'].append({
                 "tag": pattern.tag,
-                "patterns": pattern.pattern,
-                "responses": pattern.response,
+                "patterns": pattern.pattern.split(','),
+                "responses": pattern.response.split(','),
                 "context_set": ""
             })
 
