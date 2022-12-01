@@ -1,8 +1,9 @@
 import random
 import json
 import torch
-from model import NeuralNet
-from nltk_utils import bag_of_words, tokenize
+from Chat.model import NeuralNet
+from Chat.nltk_utils import bag_of_words, tokenize
+import nltk
 import time
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -49,6 +50,7 @@ def get_response(msg):
 
 
 if __name__ == "__main__":
+    nltk.download('punkt')
     print("Mensaje inicial")
     while True:
         sentence = input("You: ")
